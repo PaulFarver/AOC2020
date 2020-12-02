@@ -5,6 +5,7 @@ pattern = "(\d+)-(\d+) ([a-z]): ([a-z]*)"
 F = open("input.txt", "r")
 
 amount = 0
+amount2 = 0
 for l in F:
     a = re.search(pattern, l)
     # print(a.group(1) + "|" + a.group(2) + "|" + a.group(3) + "|" + a.group(4))
@@ -16,5 +17,11 @@ for l in F:
             curr = curr+1
     if curr >= min and curr <= max:
         amount = amount + 1
+    
+    if (a.group(4)[min-1] == a.group(3)) != (a.group(4)[max-1] == a.group(3)):
+        amount2 = amount2 + 1
+
 print(amount)
+print(amount2)
+    
     
