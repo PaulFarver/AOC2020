@@ -20,7 +20,6 @@ for line in F:
             if color not in tree:
                 tree[color] = []
             tree[color].append(parent)
-print("Dependency tree generated")
 
 def recurseTree(key):
     if key not in tree:
@@ -32,9 +31,7 @@ def recurseTree(key):
     return l
         
 masterlist = np.array(recurseTree("shiny gold "))
-print(masterlist)
 
-print(np.unique(masterlist))
 print(len(np.unique(masterlist)))
 
 F = open("input", "r")
@@ -51,9 +48,6 @@ for line in F:
         for g in m.groups()[2].split(","):
             l = re.match(bagPattern, g) 
             tree[parent].append((int(l.groups()[1]), l.groups()[2]))
-print("Dependency tree generated")
-
-print(tree)
 
 def recurseTree2(key):
     if key not in tree:
