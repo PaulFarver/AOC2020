@@ -36,3 +36,31 @@ print(masterlist)
 
 print(np.unique(masterlist))
 print(len(np.unique(masterlist)))
+
+F = open("input", "r")
+
+tree = {}
+for line in F:
+    m = re.match(pattern, line)
+    if m == None:
+        m = re.match(noPattern, line)
+    parent = m.groups()[0]
+    if parent not in tree:
+        tree[parent] = []
+    if len(m.groups()) >= 3:
+        for g in m.groups()[2].split(","):
+            l = re.match(bagPattern, g) 
+            tree[parent].append((int(l.groups()[1]), l.groups()[2]))
+print("Dependency tree generated")
+
+print(tree)
+
+def recurseTree2(key):
+    if key not in tree:
+        return 1
+    s = 1
+    for b in tree[key]:
+        s += b[0] * recurseTree2(b[1])
+    return s
+
+print(recurseTree2("shiny gold ")-1)
