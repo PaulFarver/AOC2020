@@ -16,7 +16,7 @@ part1 = 0
 part1n = 0
 
 for i in range(25, len(n)):
-    if not hasPair(n[i], n[:i]):
+    if not hasPair(n[i], n[i-25:i]):
         part1n = i
         part1 = n[i]
         print(n[i], i, False)
