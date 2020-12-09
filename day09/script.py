@@ -4,13 +4,13 @@ n = [int(line) for line in open("input")]
 
 print(len(n), len(np.unique(n)))
 
-def hasPair(s, numbers):
-    for n1 in numbers:
-        for n2 in numbers:
-            if n1+n2 == s and n1 != n2:
-                return True
+def hasPair(s, n):
+    for a in n:
+        b = s - a
+        # Apparently b in n is faster than looping through the numbers manually
+        if a != b and b in n:
+            return True
     return False
-
 
 part1 = 0
 part1n = 0
